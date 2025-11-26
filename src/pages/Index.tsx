@@ -16,36 +16,64 @@ const Index = () => {
     <div className="min-h-screen bg-gradient-to-b from-white to-secondary/30">
       <section className="container mx-auto px-4 py-20 md:py-32 animate-fade-in">
         <div className="grid md:grid-cols-2 gap-12 items-center">
-          <div className="space-y-6">
-            <h1 className="text-4xl md:text-6xl font-bold text-foreground leading-tight">
-              Ваше тело уже имеет инструкцию. Пора научиться её читать.
-            </h1>
-            <p className="text-xl text-muted-foreground">
+          <div className="space-y-8">
+            <div className="space-y-4">
+              <div className="inline-block px-4 py-2 bg-primary/10 rounded-full">
+                <span className="text-primary font-semibold text-sm">НАУЧНЫЙ БЕСТСЕЛЛЕР</span>
+              </div>
+              <h1 className="text-5xl md:text-7xl font-bold text-foreground leading-tight">
+                ГОРМОНЫ
+              </h1>
+              <p className="text-2xl md:text-3xl text-muted-foreground font-medium">
+                Ваше тело уже имеет инструкцию. Пора научиться её читать.
+              </p>
+            </div>
+            <p className="text-lg text-muted-foreground leading-relaxed">
               Научный бестселлер, который перевернет ваше представление о здоровье, силе воли и настроении
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
-              <Button size="lg" className="text-lg px-8 py-6 transition-transform hover:scale-105">
-                <Icon name="ShoppingCart" size={20} className="mr-2" />
-                Купить за 200 ₽
-              </Button>
               <Button 
                 size="lg" 
                 variant="outline" 
-                className="text-lg px-8 py-6 transition-transform hover:scale-105"
+                className="text-lg px-10 py-7 transition-transform hover:scale-105 border-2 border-primary hover:bg-primary hover:text-primary-foreground"
                 onClick={() => window.open(`https://wa.me/${whatsappNumber}?text=${whatsappMessage}`, '_blank')}
               >
-                <Icon name="MessageCircle" size={20} className="mr-2" />
-                Написать в WhatsApp
+                <Icon name="MessageCircle" size={22} className="mr-2" />
+                Купить в WhatsApp
               </Button>
             </div>
+            <div className="flex items-center gap-6 pt-4 text-sm text-muted-foreground">
+              <div className="flex items-center gap-2">
+                <Icon name="CheckCircle2" size={18} className="text-primary" />
+                <span>Мгновенная доставка</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <Icon name="Shield" size={18} className="text-primary" />
+                <span>Всего 200 ₽</span>
+              </div>
+            </div>
           </div>
-          <div className="relative animate-scale-in">
-            <div className="absolute inset-0 bg-gradient-to-tr from-primary/20 to-accent/20 rounded-3xl blur-3xl"></div>
-            <img 
-              src="https://cdn.poehali.dev/projects/cd3c92db-abd6-4a6c-9b8d-e61c590232ac/files/7fec3781-1ff8-4663-8de4-2ba875e308e1.jpg" 
-              alt="Книга Гормоны" 
-              className="relative rounded-3xl shadow-2xl w-full hover:scale-105 transition-transform duration-300"
-            />
+          <div className="relative animate-scale-in perspective-1000">
+            <div className="absolute inset-0 bg-gradient-to-tr from-purple-500/30 via-blue-500/30 to-pink-500/30 rounded-2xl blur-3xl opacity-60"></div>
+            <div className="relative book-3d">
+              <div className="book-container">
+                <img 
+                  src="https://cdn.poehali.dev/files/b90fd032-3b34-4129-84ac-529a2428f598.jpg" 
+                  alt="Книга Гормоны" 
+                  className="relative w-full rounded-lg shadow-2xl transition-transform duration-500 hover:scale-105"
+                  style={{
+                    boxShadow: '20px 20px 60px rgba(0,0,0,0.3), -10px -10px 40px rgba(139, 92, 246, 0.1)',
+                    transform: 'perspective(1000px) rotateY(-15deg) rotateX(5deg)',
+                  }}
+                />
+                <div 
+                  className="absolute top-0 right-0 w-8 h-full bg-gradient-to-r from-transparent via-black/20 to-black/40 rounded-r-lg"
+                  style={{
+                    transform: 'perspective(1000px) rotateY(-15deg) rotateX(5deg) translateX(-2px)',
+                  }}
+                ></div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -180,19 +208,14 @@ const Index = () => {
       <section className="container mx-auto px-4 py-20">
         <div className="max-w-3xl mx-auto">
           <div className="bg-gradient-to-br from-primary/5 to-accent/5 rounded-3xl p-8 md:p-12 border border-primary/20">
-            <div className="flex flex-col md:flex-row gap-8 items-start">
-              <div className="w-24 h-24 bg-gradient-to-br from-primary to-accent rounded-2xl flex items-center justify-center text-white text-4xl font-bold flex-shrink-0">
-                АР
-              </div>
-              <div className="space-y-4">
-                <h2 className="text-3xl font-bold text-foreground">Об авторе</h2>
-                <h3 className="text-xl font-semibold text-primary">Андрей Равинских</h3>
-                <p className="text-muted-foreground leading-relaxed">
-                  Основатель студии здоровья «Благодать», исследователь и автор-составитель этой книги. 
-                  Специализируется на оздоровительных практиках, мастерски превращает сложные научные данные 
-                  в понятные инструкции к собственному телу.
-                </p>
-              </div>
+            <div className="space-y-4">
+              <h2 className="text-3xl font-bold text-foreground">Об авторе</h2>
+              <h3 className="text-xl font-semibold text-primary">Андрей Равинских</h3>
+              <p className="text-muted-foreground leading-relaxed">
+                Основатель студии здоровья «Благодать», исследователь и автор-составитель этой книги. 
+                Специализируется на оздоровительных практиках, мастерски превращает сложные научные данные 
+                в понятные инструкции к собственному телу.
+              </p>
             </div>
           </div>
         </div>
@@ -209,16 +232,11 @@ const Index = () => {
                   <p className="text-muted-foreground">PDF формат · Доступ сразу после оплаты</p>
                 </div>
                 
-                <div className="space-y-3 pt-4">
-                  <Button size="lg" className="w-full text-lg py-6 transition-transform hover:scale-105">
-                    <Icon name="ShoppingCart" size={20} className="mr-2" />
-                    Купить за 200 ₽
-                  </Button>
-                  
+                <div className="pt-4">
                   <Button 
                     size="lg" 
                     variant="outline" 
-                    className="w-full text-lg py-6 transition-transform hover:scale-105 border-2 border-primary/30 hover:bg-primary/5"
+                    className="w-full text-lg py-6 transition-transform hover:scale-105 border-2 border-primary hover:bg-primary hover:text-primary-foreground"
                     onClick={() => window.open(`https://wa.me/${whatsappNumber}?text=${whatsappMessage}`, '_blank')}
                   >
                     <Icon name="MessageCircle" size={20} className="mr-2" />
