@@ -42,9 +42,6 @@ const Index = () => {
         <div className="grid md:grid-cols-2 gap-12 items-center">
           <div className="space-y-8">
             <div className="space-y-4">
-              <div className="inline-block px-4 py-2 bg-primary/10 rounded-full">
-                <span className="text-primary font-semibold text-sm">НАУЧНЫЙ БЕСТСЕЛЛЕР</span>
-              </div>
               <h1 className="text-5xl md:text-7xl font-bold text-foreground leading-tight">
                 ГОРМОНЫ
               </h1>
@@ -383,20 +380,11 @@ const Index = () => {
                 Как получить книгу после оплаты?
               </AccordionTrigger>
               <AccordionContent className="text-muted-foreground">
-                Сразу после оплаты вы получите ссылку на скачивание книги на указанную электронную почту. Также ссылка будет доступна в личном кабинете.
+                Сразу после оплаты вы получите ссылку на скачивание книги на указанную электронную почту.
               </AccordionContent>
             </AccordionItem>
 
             <AccordionItem value="item-3" className="border rounded-lg px-6 bg-card">
-              <AccordionTrigger className="text-lg font-semibold hover:text-primary">
-                Можно ли вернуть деньги?
-              </AccordionTrigger>
-              <AccordionContent className="text-muted-foreground">
-                Да, если книга не оправдала ваших ожиданий в течение 7 дней после покупки, мы вернём вам полную стоимость. Просто напишите нам в WhatsApp.
-              </AccordionContent>
-            </AccordionItem>
-
-            <AccordionItem value="item-4" className="border rounded-lg px-6 bg-card">
               <AccordionTrigger className="text-lg font-semibold hover:text-primary">
                 Для кого эта книга?
               </AccordionTrigger>
