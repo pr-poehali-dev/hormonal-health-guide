@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import {
@@ -6,11 +7,34 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
 import Icon from "@/components/ui/icon";
+import { useToast } from "@/hooks/use-toast";
 
 const Index = () => {
+  const [isOrderDialogOpen, setIsOrderDialogOpen] = useState(false);
+  const [orderForm, setOrderForm] = useState({ name: "", email: "", phone: "" });
+  const { toast } = useToast();
   const whatsappNumber = "79516004875";
   const whatsappMessage = encodeURIComponent("Хочу купить книгу 'Гормоны'");
+
+  const handleOrderSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    toast({
+      title: "Заказ отправлен!",
+      description: "Мы свяжемся с вами в ближайшее время для подтверждения.",
+    });
+    setIsOrderDialogOpen(false);
+    setOrderForm({ name: "", email: "", phone: "" });
+  };
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-white to-secondary/30">
@@ -29,9 +53,17 @@ const Index = () => {
               </p>
             </div>
             <p className="text-lg text-muted-foreground leading-relaxed">
-              Научный бестселлер, который перевернет ваше представление о здоровье, силе воли и настроении
+              Книга, которая перевернет ваше представление о здоровье, силе воли и настроении
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
+              <Button 
+                size="lg" 
+                className="text-lg px-10 py-7 transition-transform hover:scale-105"
+                onClick={() => setIsOrderDialogOpen(true)}
+              >
+                <Icon name="ShoppingCart" size={22} className="mr-2" />
+                Оформить заказ
+              </Button>
               <Button 
                 size="lg" 
                 variant="outline" 
@@ -221,6 +253,68 @@ const Index = () => {
         </div>
       </section>
 
+      <section className="container mx-auto px-4 py-20">
+        <div className="max-w-5xl mx-auto space-y-8">
+          <div className="text-center space-y-4">
+            <h2 className="text-3xl md:text-5xl font-bold text-foreground">Отзывы читателей</h2>
+            <p className="text-muted-foreground">Что говорят те, кто уже прочитал книгу</p>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-6 mt-12">
+            <Card className="transition-all hover:shadow-lg">
+              <CardContent className="p-6 space-y-4">
+                <div className="flex gap-1">
+                  {[1, 2, 3, 4, 5].map((star) => (
+                    <Icon key={star} name="Star" size={18} className="text-yellow-500 fill-yellow-500" />
+                  ))}
+                </div>
+                <p className="text-muted-foreground italic">
+                  "Наконец-то понятная книга о гормонах! Никаких сложных терминов, только практические советы. Уже через неделю заметила улучшение сна."
+                </p>
+                <div className="pt-2">
+                  <p className="font-semibold">Мария К.</p>
+                  <p className="text-sm text-muted-foreground">Москва</p>
+                </div>
+              </CardContent>
+            </Card>
+
+            <Card className="transition-all hover:shadow-lg">
+              <CardContent className="p-6 space-y-4">
+                <div className="flex gap-1">
+                  {[1, 2, 3, 4, 5].map((star) => (
+                    <Icon key={star} name="Star" size={18} className="text-yellow-500 fill-yellow-500" />
+                  ))}
+                </div>
+                <p className="text-muted-foreground italic">
+                  "Эта книга помогла мне понять, почему диеты не работали. Оказывается, всё дело в гормонах! Теперь чувствую себя намного лучше."
+                </p>
+                <div className="pt-2">
+                  <p className="font-semibold">Алексей Н.</p>
+                  <p className="text-sm text-muted-foreground">Санкт-Петербург</p>
+                </div>
+              </CardContent>
+            </Card>
+
+            <Card className="transition-all hover:shadow-lg">
+              <CardContent className="p-6 space-y-4">
+                <div className="flex gap-1">
+                  {[1, 2, 3, 4, 5].map((star) => (
+                    <Icon key={star} name="Star" size={18} className="text-yellow-500 fill-yellow-500" />
+                  ))}
+                </div>
+                <p className="text-muted-foreground italic">
+                  "Читала на одном дыхании! Автор объясняет сложные вещи простым языком. Теперь понимаю своё тело и знаю, как ему помочь."
+                </p>
+                <div className="pt-2">
+                  <p className="font-semibold">Елена П.</p>
+                  <p className="text-sm text-muted-foreground">Екатеринбург</p>
+                </div>
+              </CardContent>
+            </Card>
+          </div>
+        </div>
+      </section>
+
       <section className="bg-gradient-to-br from-primary/10 via-accent/10 to-primary/5 py-20">
         <div className="container mx-auto px-4">
           <div className="max-w-2xl mx-auto">
@@ -232,7 +326,15 @@ const Index = () => {
                   <p className="text-muted-foreground">PDF формат · Доступ сразу после оплаты</p>
                 </div>
                 
-                <div className="pt-4">
+                <div className="flex flex-col gap-3 pt-4">
+                  <Button 
+                    size="lg" 
+                    className="w-full text-lg py-6 transition-transform hover:scale-105"
+                    onClick={() => setIsOrderDialogOpen(true)}
+                  >
+                    <Icon name="ShoppingCart" size={20} className="mr-2" />
+                    Оформить заказ
+                  </Button>
                   <Button 
                     size="lg" 
                     variant="outline" 
@@ -346,6 +448,65 @@ const Index = () => {
           </div>
         </div>
       </footer>
+
+      <Dialog open={isOrderDialogOpen} onOpenChange={setIsOrderDialogOpen}>
+        <DialogContent className="sm:max-w-md">
+          <DialogHeader>
+            <DialogTitle className="text-2xl font-bold">Оформление заказа</DialogTitle>
+            <DialogDescription>
+              Заполните форму, и мы свяжемся с вами для подтверждения заказа
+            </DialogDescription>
+          </DialogHeader>
+          <form onSubmit={handleOrderSubmit} className="space-y-4 pt-4">
+            <div className="space-y-2">
+              <Label htmlFor="name">Ваше имя</Label>
+              <Input
+                id="name"
+                placeholder="Введите ваше имя"
+                value={orderForm.name}
+                onChange={(e) => setOrderForm({ ...orderForm, name: e.target.value })}
+                required
+              />
+            </div>
+            <div className="space-y-2">
+              <Label htmlFor="email">Email</Label>
+              <Input
+                id="email"
+                type="email"
+                placeholder="example@mail.com"
+                value={orderForm.email}
+                onChange={(e) => setOrderForm({ ...orderForm, email: e.target.value })}
+                required
+              />
+            </div>
+            <div className="space-y-2">
+              <Label htmlFor="phone">Телефон</Label>
+              <Input
+                id="phone"
+                type="tel"
+                placeholder="+7 (___) ___-__-__"
+                value={orderForm.phone}
+                onChange={(e) => setOrderForm({ ...orderForm, phone: e.target.value })}
+                required
+              />
+            </div>
+            <div className="bg-secondary/50 rounded-lg p-4 space-y-2">
+              <div className="flex justify-between items-center">
+                <span className="text-muted-foreground">Книга "Гормоны" (PDF)</span>
+                <span className="font-bold text-lg">200 ₽</span>
+              </div>
+              <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                <Icon name="CheckCircle2" size={16} className="text-primary" />
+                <span>Мгновенная доставка на email</span>
+              </div>
+            </div>
+            <Button type="submit" size="lg" className="w-full">
+              <Icon name="ShoppingCart" size={20} className="mr-2" />
+              Подтвердить заказ
+            </Button>
+          </form>
+        </DialogContent>
+      </Dialog>
     </div>
   );
 };
